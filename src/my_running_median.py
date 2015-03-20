@@ -1,17 +1,16 @@
 #Load modules
 import os
-import copy
 import numpy as np
 import glob
 import sys
 
-median, numline, lines = [], [], [] #Empty lists
-os.chdir(sys.argv[1]) #Change to second directory of current
+median, numline, lines = [], [], [] #Create 3 Empty lists
+os.chdir(sys.argv[1]) #Change directory to location of 2nd arg in run.sh (wc_input) 
 
 for txtfile in glob.glob("*.txt"): #For all text files
     with open(txtfile) as file:
-        for x in file:
-            lines = lines + x.splitlines() #List of each line
+        for echline in file:
+            lines = lines + echline.splitlines() #List each line
             
 for item in lines: #For each item of the variable lines
     c = len(item.split()) #Count the number of words
@@ -23,12 +22,12 @@ for i in range(fxind):
         med = np.median(numline[0:i]) 
         median.append(med)
 
-os.chdir("..") #Move back directory
-newfile = open(sys.argv[2], "w") #Open third directory and write newfile
+os.chdir("..") #Change directory for sys.argv[2]
+newfile = open(sys.argv[2], "w") #Open a new file for write in run.sh arg 3
 
 for val in median:
-    newfile.write("%.1f\n" % val) #For each value print and go to next line
-newfile.close()
+    newfile.write("%.1f\n" % val) #For each value print (1 sigfig) and go to next line
+newfile.close() #Close file
 
     
 

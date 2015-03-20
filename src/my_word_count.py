@@ -1,31 +1,31 @@
 #Load modules
 import re
 import os
-import copy
-import numpy as np
 import glob
 import sys
-count, wd, words = [], [], []
-os.chdir(sys.argv[1]) #Change to second directory of current
 
-for txtfile in glob.glob("*.txt"): #For all text files
+count, wd, words = [], [], [] #Create 3 Empty lists
+os.chdir(sys.argv[1]) #Change directory to location of 2nd arg in run.sh (wc_input) 
+
+for txtfile in glob.glob("*.txt"): #For loop of all text files
     with open(txtfile) as file:
         for word in file:
-            nospchar = re.sub('[^a-zA-Z]+', ' ', word).strip() #Remove non-alphanumeric
-            lwrcase = nospchar.lower() #Make Lowercase
-            words = words + lwrcase.split() #List of each word
+            nospchar = re.sub('[^a-zA-Z]+', ' ', word).strip() #Remove non-alphanumeric characters
+            lwrcase = nospchar.lower() #Turn to Lowercase
+            words = words + lwrcase.split() #Add to list of words
+            
 uniqueset = set(words) #Get unique values by turning list into set
 uniquelist = list(uniqueset) #Turn unique values back to list
-for eachwd in uniquelist:
-    count.append(words.count(eachwd))
-    wd.append(eachwd)
-zwdcount = zip(wd, count) #Combine count and wd 
-wdcount = list(zwdcount) #Turn back to list if Py3
-#print wdcount[0]
 
-os.chdir("..") #Move back directory
-newfile = open(sys.argv[2], "w") #Open third directory and write newfile
+for eachwd in uniquelist: #For each word in the list of uniques
+    count.append(words.count(eachwd)) #Count number of words in original list; add integer to count list
+    wd.append(eachwd) #Add word to wd list  
+    
+zwdcount = zip(wd, count) #Combine count and wd as tuples
+wdcount = list(zwdcount) #Turn back to list 
 
-for (word, val) in wdcount:
-    newfile.write("%s:  %s\n" % (word, val)) #For each word and value print and go to next line
-newfile.close()
+os.chdir("..") #Change directory for sys.argv[2]
+newfile = open(sys.argv[2], "w") #Open a new file for write in run.sh arg 3
+for (word, val) in wdcount: #For each word in the final list
+    newfile.write("%s:  %s\n" % (word, val))
+newfile.close() #Close
