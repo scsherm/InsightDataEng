@@ -11,7 +11,7 @@ for txtfile in glob.glob("*.txt"): #For loop of all text files
     with open(txtfile) as file:
         for word in file:
             nospchar = re.sub('[^a-zA-Z]+', ' ', word).strip() #Remove non-alphanumeric characters
-            lwrcase = nospchar.lower() #Turn to Lowercase
+            lwrcase = nospchar.lower() #Turn to lowercase
             words = words + lwrcase.split() #Add to list of words
             
 uniqueset = set(words) #Get unique values by turning list into set
@@ -27,5 +27,5 @@ wdcount = list(zwdcount) #Turn back to list
 os.chdir("..") #Change directory for sys.argv[2]
 newfile = open(sys.argv[2], "w") #Open a new file for write in run.sh arg 3
 for (word, val) in wdcount: #For each word in the final list
-    newfile.write("%s:  %s\n" % (word, val))
-newfile.close() #Close
+    newfile.write("%s:  %s\n" % (word, val)) #Print word and value, go to next line
+newfile.close() #Close file

@@ -707,7 +707,7 @@ gestured:  1
 sums:  1
 dark:  1
 traffic:  5
-world:  63
+world:  65
 snare:  1
 dare:  1
 babylonian:  1
@@ -1204,7 +1204,7 @@ habitually:  1
 came:  66
 enrolled:  1
 fresh:  6
-hello:  7
+hello:  8
 essay:  8
 partial:  1
 knotted:  2
@@ -2020,7 +2020,7 @@ p:  9
 waxworks:  2
 guy:  1
 woven:  1
-brave:  2
+brave:  3
 regained:  1
 discover:  3
 cost:  4
@@ -3203,7 +3203,7 @@ nee:  1
 spokesman:  1
 lights:  5
 reverently:  1
-new:  53
+new:  54
 net:  3
 ever:  66
 med:  2
